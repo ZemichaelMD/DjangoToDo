@@ -8,6 +8,8 @@ from .forms import *
 
 # Create your views here.
 def index(request):
+    title = "Zee's Todo List"
+
     tasks = Task.objects.all()
 
     form = TaskForm()
@@ -18,11 +20,12 @@ def index(request):
             form.save()
         return redirect('/')
 
-    context = {'tasks': tasks, 'form': form}
+    context = {'tasks': tasks, 'form': form, 'title': title}
     return render(request, 'tasks/list.html', context)
 
 
 def updateTask(request, pk):
+    title = "Updating: " + str(Task.objects.get(id=pk))
     task = Task.objects.get(id=pk)
 
     form = TaskForm(instance=task)
@@ -33,14 +36,15 @@ def updateTask(request, pk):
             form.save()
             return redirect('/')
 
-    context = {'form': form}
+    context = {'form': form, 'title':title}
     return render(request, 'tasks/update_task.html', context)
 
 def deleteTask(request, pk):
+    title = "Deleting: " + str(Task.objects.get(id=pk))
 
     task = Task.objects.get(id=pk)
 
-    context={'task': task}
+    context={'task': task, 'title':title}
 
     if request.method=="POST":
         task.delete()

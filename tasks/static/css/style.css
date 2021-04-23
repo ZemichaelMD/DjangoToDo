@@ -1,0 +1,131 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background-color:gray;
+    color:white;
+    font-family:"stylus-bt", sans-serif;
+    min-height:100vh;
+}
+
+header{
+    background-color: black;
+    color: white;
+    padding: 0.5rem;
+    font-size:1.5rem
+}
+
+header, form{
+    min-height:20vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+form input, form button{
+    padding:0.5rem;
+    font-size:2rem;
+    border:none;
+    background:white;
+
+}
+
+.update-btn, .delete-btn {
+    color:red;
+    background:white;
+    padding:1rem;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.update-btn, .delete-btn :hover{
+    background:darkorange;
+    color:white;
+}
+
+.update-btn {
+    background:green;
+}
+
+.buttons{
+    justify-self: right;
+}
+
+.task-container{
+    background: white;
+}
+
+.task-list{
+    min-width:60%;
+}
+
+.tasks{
+    margin:0.5rem;
+    background:white;
+    color:black;
+    font-size:1.5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition: all 0.5s;
+    overflow: hidden;
+}
+.strike{
+    text-decoration:line-through;
+    opacity:0.5;
+}
+
+
+.tasks li {
+    flex:1;
+    padding:0rem 0.5rem;
+}
+
+.completed{
+
+}
+
+.fall{
+    transform:translateY(8rem) rotateZ(20deg);
+    opacity:0;
+}
+
+select{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    outline:none;
+    border:none;
+}
+
+.select{
+    margin:1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select{
+    color:orange;
+    width: 10rem;
+    cursor: pointer;
+    padding:1rem;
+
+    }
+
+.select::after{
+    content:"\25BC";
+    position:absolute;
+    background:darkorange;
+    top:0;
+    right:0;
+    padding:1rem;
+    pointer-events:none;
+}
+
+.select:hover::after{
+    background:white;
+    color:orange;
+}

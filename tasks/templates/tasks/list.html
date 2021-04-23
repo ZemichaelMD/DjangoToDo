@@ -1,30 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>trial</title>
-</head>
-<body>
+{% include "base.html" %}
 
 <h1>My TODO List</h1>
 
-<form method="POST" action="/">
-    {% csrf_token %}
-    {{ form.title }}
-    <input type="submit" name="Create Task!">
-</form>
+{% block content %}
 
-{% for task in tasks %}
-    <a href="{% url 'update_task' task.id %}">Update</a>
-    <a href="{% url 'delete' task.id %}">Delete</a>
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{ form.title }}
+        <input type="submit" name="Create Task!">
+    </form>
 
-    {% if task.complete == True %}
-    <strike>{{ task }}</strike><br>
-    {%else%}
-    <span>{{ task }}</span><br>
-    {%endif%}
+    <div>
+        {% for task in tasks %}
+        <div class="task-container">
+            <div class="buttons">
+                <a class="update-btn" href="{% url 'update_task' task.id %}">Update</a>
+                <a class="delete-btn"href="{% url 'delete' task.id %}">Delete</a>
+            </div>
+            {% if task.complete == True %}
+            <div class="task-list">
+                <ul>
+                    <li class="tasks"><div class="strike">{{ task }}</div></li>
+            {%else%}
+                    <li class="tasks">{{ task }}</li>
+                </ul>
+            {%endif%}
+            </div>
+            <hr>   
+        </div>
+        {% endfor %} 
+      
+    </div>
 
-{% endfor %}
+{% endblock content %}
 
 
 </body>
