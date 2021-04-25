@@ -1,39 +1,34 @@
 {% include "base.html" %}
 
-<h1>My TODO List</h1>
+
 
 {% block content %}
 
     <form method="POST" action="/">
         {% csrf_token %}
         {{ form.title }}
-        <input type="submit" name="Create Task!">
+        <input type="submit" name="Create Task!" value="Submit!">
     </form>
 
-    <div>
+    <div class="task-container">
+        <h1>Your List...</h1>
         {% for task in tasks %}
-        <div class="task-container">
+        <div class="single-task">
             <div class="buttons">
                 <a class="update-btn" href="{% url 'update_task' task.id %}">Update</a>
                 <a class="delete-btn"href="{% url 'delete' task.id %}">Delete</a>
             </div>
             {% if task.complete == True %}
-            <div class="task-list">
-                <ul>
-                    <li class="tasks"><div class="strike">{{ task }}</div></li>
+                <ul class="task-list">
+                    <li class="tasks strike">{{ task }}</li>
+                    <hr>
             {%else%}
                     <li class="tasks">{{ task }}</li>
+                    <hr>
                 </ul>
-            {%endif%}
-            </div>
-            <hr>   
+            {%endif%}      
         </div>
         {% endfor %} 
-      
     </div>
 
 {% endblock content %}
-
-
-</body>
-</html>
